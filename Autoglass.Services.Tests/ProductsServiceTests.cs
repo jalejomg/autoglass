@@ -91,5 +91,61 @@ namespace Autoglass.Services.Tests
                 .Verify(p => p.CreateProductAsync(productEntity), Times.Never);
         }
 
+        [Fact]
+        public async Task Should_delete_product()
+        {
+            // Arrange
+            var fixture = new Fixture();
+            var productId = fixture.Create<int>();
+            var productEntity = fixture.Create<Product>();
+            productEntity.Active = true;
+            productEntity.Id = productId;
+
+            var _productsRepositoryMock = new Mock<IProductsRepository>();
+
+            _productsRepositoryMock
+                .Setup(p => p.GetProductByIdAsync(productId))
+                .ReturnsAsync(productEntity);
+
+            var sut = CreateSut(_productsRepositoryMock.Object);
+
+            // Act
+            await sut.DeleteAsync(productId);
+
+            // Assert
+            _productsRepositoryMock
+                .Verify(p => p.GetProductByIdAsync(productId), Times.Once);
+
+            _productsRepositoryMock
+                .Verify(p => p.DeleteProductAsync(productEntity), Times.Once);
+        }
+
+        [Fact]
+        public async Task Should_not_delete_product_because_product_does_not_exist()
+        {
+            // Arrange
+            var fixture = new Fixture();
+            var productId = fixture.Create<int>();
+            var productEntity = fixture.Create<Product>();
+            productEntity.Active = false;
+            productEntity.Id = productId;
+
+            var _productsRepositoryMock = new Mock<IProductsRepository>();
+
+            _productsRepositoryMock
+                .Setup(p => p.GetProductByIdAsync(productId))
+                .ReturnsAsync(productEntity);
+
+            var sut = CreateSut(_productsRepositoryMock.Object);
+
+            // Act and Assert
+            await Assert.ThrowsAnyAsync<Exception>(async () => await sut.DeleteAsync(productId));
+
+            _productsRepositoryMock
+                .Verify(p => p.GetProductByIdAsync(productId), Times.Once);
+
+            _productsRepositoryMock
+                .Verify(p => p.DeleteProductAsync(productEntity), Times.Never);
+        }
     }
 }
