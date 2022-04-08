@@ -147,5 +147,43 @@ namespace Autoglass.Services.Tests
             _productsRepositoryMock
                 .Verify(p => p.DeleteProductAsync(productEntity), Times.Never);
         }
+
+        [Fact]
+        public async Task Shoul_return_a_list_of_products()
+        {
+            // Arrange
+            var fixture = new Fixture();
+            var productsEntity = fixture.Create<List<Product>>();
+            var productsModel = fixture.Create<ProductModel>();
+
+            var _productsRepositoryMock = new Mock<IProductsRepository>();
+
+            _productsRepositoryMock
+                .Setup(p => p.GetAllProductsAsync(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<DateTime>(),
+                    It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<string>()))
+                .ReturnsAsync(productsEntity);
+
+            var _mapperMock = new Mock<IMapper>();
+
+            _mapperMock
+                .Setup(m => m.Map<ProductModel>(productsEntity))
+                .Returns(productsModel);
+
+
+            var sut = CreateSut(_productsRepositoryMock.Object, _mapperMock.Object);
+
+            // Act
+
+            var result = await sut.GetAllAsync(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<DateTime>(),
+                    It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<string>());
+
+            // Assert
+            Assert.IsType<List<ProductModel>>(result);
+
+            _productsRepositoryMock
+                .Verify(p => p.GetAllProductsAsync(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<DateTime>(),
+                    It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<string>()), Times.Once);
+        }
+
     }
 }
