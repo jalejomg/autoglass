@@ -29,5 +29,15 @@ namespace Autoglass.Services
 
             return await _productsRepository.CreateProductAsync(productEntity);
         }
+        public async Task DeleteAsync(int id)
+        {
+            var product = await _productsRepository.GetProductByIdAsync(id);
+
+            if (product == null || !product.Active)
+                throw new Exception($"Product with id {id} does not exist");
+
+            await _productsRepository.DeleteProductAsync(product);
+        }
+
     }
 }
