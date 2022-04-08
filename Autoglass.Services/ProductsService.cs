@@ -29,6 +29,7 @@ namespace Autoglass.Services
 
             return await _productsRepository.CreateProductAsync(productEntity);
         }
+
         public async Task DeleteAsync(int id)
         {
             var product = await _productsRepository.GetProductByIdAsync(id);
@@ -53,6 +54,27 @@ namespace Autoglass.Services
             }
 
             return productModels;
+        }
+
+        public async Task<ProductModel> GetByIdAsync(int id)
+        {
+            if (!await _productsRepository.ProductExistsAsync(id))
+                throw new Exception($"Product with id {id} does not exist");
+
+            return _mapper.Map<ProductModel>(await _productsRepository.GetProductByIdAsync(id));
+        }
+
+        public async Task UpdateAsync(ProductModel productModel)
+        {
+            if (productModel.ManufacturingDate > productModel.DueDate)
+                throw new InvalidOperationException($"Property {nameof(productModel.ManufacturingDate)} can not be greater than {nameof(productModel.DueDate)} ");
+
+            var product = await _productsRepository.GetProductByIdAsync(productModel.Id);
+
+            if (product == null || !product.Active)
+                throw new InvalidOperationException($"Product with id {productModel.Id} does not exist");
+
+            await _productsRepository.UpdateProductAsync(product);
         }
     }
 }
