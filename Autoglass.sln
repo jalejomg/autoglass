@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autoglass.Api", "Autoglass.Api\Autoglass.Api.csproj", "{990667F6-2D75-4D2B-A508-BCF17D993BAA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autoglass.Services", "Autoglass.Services\Autoglass.Services.csproj", "{DE789761-735B-4299-B4F7-9D4581EC6820}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autoglass.Data", "Autoglass.Data\Autoglass.Data.csproj", "{0376BFB8-C0CD-4E3C-8425-BA4B39E33674}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{1BC6FBCC-D3CD-434A-B6E7-76CBD243F0BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{128FABF9-CC33-4ED9-B8C8-1F29DEECC85A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Executables", "Executables", "{F37BC8F7-52B4-423D-83A0-4AD5FE9DB6F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autoglass.Services.Tests", "Autoglass.Services.Tests\Autoglass.Services.Tests.csproj", "{0896CFB1-DE8C-44A6-9140-876925038CB3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{990667F6-2D75-4D2B-A508-BCF17D993BAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{990667F6-2D75-4D2B-A508-BCF17D993BAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{990667F6-2D75-4D2B-A508-BCF17D993BAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{990667F6-2D75-4D2B-A508-BCF17D993BAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE789761-735B-4299-B4F7-9D4581EC6820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE789761-735B-4299-B4F7-9D4581EC6820}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE789761-735B-4299-B4F7-9D4581EC6820}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE789761-735B-4299-B4F7-9D4581EC6820}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0376BFB8-C0CD-4E3C-8425-BA4B39E33674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0376BFB8-C0CD-4E3C-8425-BA4B39E33674}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0376BFB8-C0CD-4E3C-8425-BA4B39E33674}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0376BFB8-C0CD-4E3C-8425-BA4B39E33674}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0896CFB1-DE8C-44A6-9140-876925038CB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0896CFB1-DE8C-44A6-9140-876925038CB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0896CFB1-DE8C-44A6-9140-876925038CB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0896CFB1-DE8C-44A6-9140-876925038CB3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{990667F6-2D75-4D2B-A508-BCF17D993BAA} = {F37BC8F7-52B4-423D-83A0-4AD5FE9DB6F7}
+		{DE789761-735B-4299-B4F7-9D4581EC6820} = {128FABF9-CC33-4ED9-B8C8-1F29DEECC85A}
+		{0376BFB8-C0CD-4E3C-8425-BA4B39E33674} = {1BC6FBCC-D3CD-434A-B6E7-76CBD243F0BE}
+		{0896CFB1-DE8C-44A6-9140-876925038CB3} = {128FABF9-CC33-4ED9-B8C8-1F29DEECC85A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EC472481-E6FF-4F57-B040-8F9BE140135C}
+	EndGlobalSection
+EndGlobal
