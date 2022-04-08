@@ -39,5 +39,20 @@ namespace Autoglass.Services
             await _productsRepository.DeleteProductAsync(product);
         }
 
+        public async Task<List<ProductModel>> GetAllAsync(int amount, int page, string criteria, DateTime manufacturingDateStart, DateTime manufacturingDateEnd,
+            DateTime dueDateStart, DateTime dueDateEnd, string supplier)
+        {
+            var productEntities = await _productsRepository.GetAllProductsAsync(amount, page, criteria, manufacturingDateStart, manufacturingDateEnd,
+                dueDateStart, dueDateEnd, supplier);
+
+            var productModels = new List<ProductModel>();
+
+            foreach (var productEntity in productEntities)
+            {
+                productModels.Add(_mapper.Map<ProductModel>(productEntity));
+            }
+
+            return productModels;
+        }
     }
 }
