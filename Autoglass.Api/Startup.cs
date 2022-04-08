@@ -1,9 +1,14 @@
+using Autoglass.Data;
+using Autoglass.Data.Repositories;
+using Autoglass.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+
 namespace Autoglass.Api
 {
     public class Startup
@@ -20,6 +25,11 @@ namespace Autoglass.Api
         {
 
             services.AddControllers();
+            services.AddAutoMapper(typeof(Startup));
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("SqlServerConnectionString")));
+            services.AddScoped<IProductsRepository, ProductsRepository>();
+            services.AddScoped<IProductsService, ProductsService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Autoglass.Api", Version = "v1" });
